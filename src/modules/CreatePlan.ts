@@ -77,8 +77,7 @@ const capabilitiesDescription = (modules: ModuleInfo[]): string => {
         return "I currently have no additional capabilities installed.";
     }
 
-    return `I have the following capabilities:
-${modules.map(md => `
+    return `${modules.map(md => `
 - ${md.name}: ${md.purpose}
 Methods: ${md.methods.map(method => `\n${method.name} - ${method.description}. Example usage: ${method.example}\n`).join(', ')}`).join('\n')}`;
 }
@@ -91,7 +90,7 @@ export const moduleInfo = {
             name: 'createPlan',
             description: 'Create a plan to handle instructions',
             parameters: [
-                { name: 'instructions', type: 'string', description: 'The instructions to handle' },
+                { name: 'instructions', type: 'string', description: 'The instructions to handle along with all the context. Form a good prompt that will help the LLM understand what is being asked, including a return format. Any previous step\'s result can be added as a parameter in this form: $stepX where X is the step number. For example a short prompt would be: "The user wants to know the weather in Tokyo, we asked them for a date and they said: $step1".' },
                 { name: 'modules', type: 'object', description: 'All the potential modules (tools) you have access to' }
             ],
             returnType: 'Plan',

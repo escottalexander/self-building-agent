@@ -1,28 +1,24 @@
 import { Memory } from './Memory';
-import { FileManager } from './FileManager';
+import { FileManager } from '../modules/FileManager';
 import { CLI } from './CLI';
 import { TaskManager, Task } from './TaskManager';
-import EventEmitter from 'events';
 import * as path from 'path';
 import { Logger } from '../utils/Logger';
 import { CreatePlan, PlanStep } from '../modules/CreatePlan';
 
-export class Agent extends EventEmitter {
-    public memory: Memory;
-    private fileManager: FileManager;
+export class Agent {
     private name: string;
-    public cli: CLI;
-    private taskManager: TaskManager;
     private stepResults: Map<string, any> = new Map();
-    private createPlanModule: CreatePlan;
+    public memory: Memory;
+    public cli: CLI;
+    public taskManager: TaskManager;
+    public createPlanModule: CreatePlan;
 
     constructor(name: string) {
-        super();
         Logger.clearLogs();
         Logger.agent.status('Initializing...');
         this.name = name;
         this.memory = new Memory();
-        this.fileManager = new FileManager();
         this.cli = new CLI();
         this.taskManager = new TaskManager();
         this.createPlanModule = new CreatePlan(this);
@@ -63,8 +59,6 @@ export class Agent extends EventEmitter {
 
     async initialize(): Promise<void> {
         await this.memory.initialize();
-        await this.fileManager.initialize();
-        
         Logger.agent.info('Agent initialized');
     }
 

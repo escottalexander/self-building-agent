@@ -1,6 +1,4 @@
-import { Task } from './TaskManager';
 import blessed from 'blessed';
-import * as fs from 'fs';
 
 export class StatusMonitor {
     private screen!: blessed.Widgets.Screen;

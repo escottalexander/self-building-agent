@@ -41,7 +41,13 @@ export class CreateModule {
         Return the code for the module, do not include any other text or comments. You should fill out each method with complete code.
         It should be a valid typescript file with this format:
         \`\`\`typescript
+        import { Agent } from '../core/Agent';
+
         export class ${name} {
+            private agent: Agent;
+            constructor(agent: Agent) {
+                this.agent = agent;
+            }
             // ADD METHODS TO ACCOMPLISH PURPOSE
         }
         

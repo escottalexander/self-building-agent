@@ -18,11 +18,19 @@ export const moduleInfo = {
         },
         {
             name: 'askUser',
-            description: 'Asks the user a question and returns their response',
+            description: 'Asks the user a question and returns their response. You should ALWAYS use the CreatePlan module following your use of this method so that you can adjust your plan as needed after getting more input.',
             parameters: [{ name: 'question', type: 'string', description: 'The question to ask' }],
             returnType: 'string',
             returnDescription: 'The user\'s response',
             example: 'responseHandler.askUser("What is your name?")'
+        },
+        {
+            name: 'askExpertOpinion',
+            description: 'Asks an LLM for an opinion. May help you to further examine your plan. You should ALWAYS use the CreatePlan module following your use of this method so that you can adjust your plan as needed after getting more input.',
+            parameters: [{ name: 'prompt', type: 'string', description: 'The prompt to ask' }],
+            returnType: 'string',
+            returnDescription: 'The expert\'s opinion',
+            example: 'responseHandler.askExpertOpinion("What is the best way to accomplish this task?")'
         },
         {
             name: 'displayError',

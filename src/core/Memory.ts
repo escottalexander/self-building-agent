@@ -114,4 +114,20 @@ export class Memory {
     get moduleDirectory(): string {
         return this.modulesDir;
     }
+
+    get(key: string): any {
+        return this.data.get(key);
+    }
+
+    set(key: string, value: any): void {
+        this.data.set(key, value);
+    }
+
+    delete(key: string): void {
+        this.data.delete(key);
+    }
+
+    list(): string[] {
+        return Array.from(this.data.keys());
+    }
 } 
